@@ -1,34 +1,46 @@
 import {useState, useEffect} from 'react';
 import Map from './components/Map';
+import EventsByCategories from './components/EventsByCategories';
 import Loader from './components/Loader';
 function App() {
 
   const [eventData, setEventData] = useState([])
+  const [categoryData, setCategoryData] = useState([])
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchData = async () => {
       setLoading(true);
-      const res = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events');
-      const { events } = await res.json();
-  
+
+      const resEvents = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events');
+      const { events } = await resEvents.json();
       setEventData(events);
+      
+      const resCategories = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories');
+      const { categories } = await resCategories.json();
+      setCategoryData(categories);
+
       setLoading(false);
     }
    
-    fetchEvents();
+    fetchData();
     
   }, [])
 
   return (
-    <div>
+    <div className="app">
         <header className="header">
           <h1>Disaster Tracker (Powered By NASA)</h1>
         </header>
-        {!loading ? <Map eventData={eventData}/> : <Loader/>}
-      
+        {!loading 
+          ? <Map eventData={eventData}/> 
+          : <Loader/>
+        }
+      <EventsByCategories eventData={eventData} categoryData={categoryData}/>
     </div>
   );
 }
+
+
 
 export default App;
