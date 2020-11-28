@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 import {useState,useEffect} from 'react';
 
-import {Card,CardHeader,IconButton,CardContent,List,ListItem,ListItemText } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {Card,CardHeader,CardContent,List,ListItem,ListItemText,Divider } from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -20,12 +19,15 @@ const useStyles = makeStyles((theme) => ({
        backgroundColor: '#D9D9D9',
        color: '#353535'
     },
-    answerList: {
+    eventListItem: {
         display: 'flex',
         flexDirection:"column",
         alignItems: 'flex-start',
         borderLeft: '1px solid #BEE3DB',
-        marginLeft: '10px'
+        marginLeft: '10px',
+    },
+    listItemText:{
+        // borderBottom: '1px solid #efefef',
     },
     cardActions: {
         justifyContent: 'flex-end',
@@ -48,10 +50,8 @@ const EventsByCategories = ({eventData,categoryData}) => {
         getEventsByCategory();
     },[categoryData])
 
-    // console.log(categorizedEvents);
-
     const categories = categorizedEvents.map((category => {
-        console.log(category);
+
         return <Card className={classes.cardContainer} variant="outlined">
         <CardHeader
             className={classes.cardHeader}
@@ -60,13 +60,14 @@ const EventsByCategories = ({eventData,categoryData}) => {
         />
         <CardContent>
             <List>
-                <ListItem className={classes.answerList}>
+                <ListItem className={classes.eventListItem}>
                 {
                 category.events.map((event,index)=> {
-                   return <ListItemText primary={event.title} secondary={<Moment format="YYYY/MM/DD - hh:mm:ss">{event.geometries[0].date}</Moment>} />
+                   return <ListItemText className={classes.listItemText} primary={event.title} secondary={<Moment format="YYYY/MM/DD - hh:mm:ss">{event.geometries[0].date}</Moment>}/>
             })}
             {category.events.length == 0 && <p className="no-results">No events found.</p>}
                 </ListItem>
+            
             </List>
         </CardContent>
     </Card>
@@ -87,6 +88,7 @@ const EventsByCategories = ({eventData,categoryData}) => {
 
 EventsByCategories.propTypes = {
     eventData: PropTypes.array,
+    categoryData: PropTypes.array
 }
 
 export default EventsByCategories;
