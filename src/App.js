@@ -12,6 +12,23 @@ function App() {
   const useStyles = makeStyles((theme) => ({
     app: {
       backgroundColor: '#F3F6F7',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column'
+    },
+    headerContainer: {
+      padding: '20px',
+      textAlign: 'center'
+    },
+    header: {
+      padding: '0',
+      margin: '0',
+      color: '#353535'
+    },
+    headerSubText: {
+      fontSize: '14px',
+      color: '#6D9395'
     }
   }));
 
@@ -42,8 +59,9 @@ function App() {
 
   return (
     <div className={clsx("app",classes.app)}>
-        <header className="header">
-          <h1>Disaster Tracker (Powered By NASA)</h1>
+        <header className={classes.headerContainer}>
+          <h1 className={classes.header}>Disaster Tracker</h1>
+          <p className={classes.headerSubText}>(Powered By NASA EONET)</p>
         </header>
         {!loading 
           ? <Map eventData={eventData}/> 
