@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+
 import {useState,useEffect} from 'react';
 
 import {Card,CardHeader,CardContent,List,ListItem,ListItemText,Divider } from '@material-ui/core';
@@ -16,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
         margin: '10px'
     },
     cardHeader: {
-       backgroundColor: '#D9D9D9',
-       color: '#353535'
+       backgroundColor: '#9EB7B8',
+       color: '#fff'
     },
     eventListItem: {
         display: 'flex',
@@ -32,7 +33,16 @@ const useStyles = makeStyles((theme) => ({
     cardActions: {
         justifyContent: 'flex-end',
         flexDirection: 'row'
-    }
+    },
+    headerContainer: {
+        padding: '20px',
+        textAlign: 'center'
+      },
+      header: {
+        padding: '0',
+        margin: '0',
+        color: '#353535'
+      },
 }));
 
 const EventsByCategories = ({eventData,categoryData}) => {
@@ -51,7 +61,6 @@ const EventsByCategories = ({eventData,categoryData}) => {
     },[categoryData])
 
     const categories = categorizedEvents.map((category => {
-
         return <Card className={classes.cardContainer} variant="outlined">
         <CardHeader
             className={classes.cardHeader}
@@ -75,9 +84,8 @@ const EventsByCategories = ({eventData,categoryData}) => {
 
     return (
     <div>
-        <header className="header">
-            <h2>Events by Category</h2>
-
+        <header className={classes.headerContainer}>
+            <h2 className={classes.header}>Events by Category</h2>
         </header>
         {categories}
 

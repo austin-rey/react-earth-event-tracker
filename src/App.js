@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+
 import Map from './components/Map';
 import EventsByCategories from './components/EventsByCategories';
 import Loader from './components/Loader';

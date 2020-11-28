@@ -1,11 +1,25 @@
 import {useState} from 'react';
+
 import PropTypes from 'prop-types';
 
-import GoogleMapReact from 'google-map-react'
-import LocationMarker from './LocationMarker'
-import LocationInfoBox from './LocationInfoBox'
+import GoogleMapReact from 'google-map-react';
+import LocationMarker from './LocationMarker';
+import LocationInfoBox from './LocationInfoBox';
+
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    map: {
+        width: '90vw',
+        height: '90vh',
+        position: 'relative',
+        marginBottom: '20px'
+      }
+}))
 
 const Map = ({eventData, center, zoom}) => {
+
+    const classes = useStyles();
 
     const [locationInfo, setLocationInfo] = useState(null);
     
@@ -16,10 +30,9 @@ const Map = ({eventData, center, zoom}) => {
         return;
        
     })
-
-    console.log(locationInfo)
+    
     return (
-        <div className="map">
+        <div className={classes.map}>
             <GoogleMapReact
                 bootstrapURLKeys={{key:'AIzaSyAk4FjfzWamVD5TTWXFWJbLcPx9WQViyFQ'}}
                 defaultCenter={center}
