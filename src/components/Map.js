@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import PropTypes from 'prop-types';
 
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
@@ -32,6 +33,10 @@ Map.defaultProps = {
         lng: -122.8756
     },
     zoom: 6
+}
+
+Map.propTypes = {
+    eventData: PropTypes.array.isRequired
 }
 
 export default Map

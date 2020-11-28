@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const LocationInfoBox = ({info}) => {
     return (
         <div className="location-info">
@@ -8,6 +10,10 @@ const LocationInfoBox = ({info}) => {
             </ul>
         </div>
     )
+}
+
+LocationInfoBox.propTypes = {
+    info: PropTypes.object.isRequired
 }
 
 export default LocationInfoBox

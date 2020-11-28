@@ -1,5 +1,7 @@
 import {makeStyles} from '@material-ui/core/styles';
 
+import PropTypes from 'prop-types';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun,faSmog,faHouseDamage,faWater,faRoad,faMale,faIcicles,faCloudShowersHeavy,faSnowflake,faTemperatureLow,faMapPin,faBacterium,faFire,faMountain } from '@fortawesome/free-solid-svg-icons'
 
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     faFire : {color:'#cc0000'},
 }));
 
-const LocationMarker = ({lat,lng,onClick,type}) => {
+const LocationMarker = ({onClick,type}) => {
     const classes = useStyles();
 
     switch(type) {
@@ -68,6 +70,11 @@ const LocationMarker = ({lat,lng,onClick,type}) => {
         default : //Other
             return <FontAwesomeIcon icon={faMapPin} className={clsx(classes.icon, classes.faMapPin)} onClick={onClick}/>;
     }
+}
+
+LocationMarker.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    type: PropTypes.number.isRequired
 }
 
 export default LocationMarker
