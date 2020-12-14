@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
 import Map from './components/Map';
-import EventsByCategories from './components/EventsByCategories';
+import RecentEvents from './components/RecentEvents';
 import Loader from './components/Loader';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -43,11 +43,13 @@ function App() {
     const fetchData = async () => {
       setLoading(true);
 
-      const resEvents = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/events');
+      // All events that are open
+      const resEvents = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v3/events?status=open');
       const { events } = await resEvents.json();
       setEventData(events);
-      
-      const resCategories = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v2.1/categories');
+
+      // All category types
+      const resCategories = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v3/categories');
       const { categories } = await resCategories.json();
       setCategoryData(categories);
 
@@ -58,17 +60,20 @@ function App() {
     
   }, [])
 
+  // Recent 10 events
+  let recentEvents = eventData.slice(0, 10);
+  
   return (
     <div className={clsx("app",classes.app)}>
         <header className={classes.headerContainer}>
-          <h1 className={classes.header}>Disaster Tracker</h1>
-          <p className={classes.headerSubText}>(Powered By NASA EONET)</p>
+          <h1 className={classes.header}>Earth Event Tracker</h1>
+          <p className={classes.headerSubText}>(Powered By <a href="https://eonet.sci.gsfc.nasa.gov/" target="_blank">NASA EONET</a>)</p>
         </header>
         {!loading 
           ? <Map eventData={eventData}/> 
           : <Loader/>
         }
-      <EventsByCategories eventData={eventData} categoryData={categoryData}/>
+      <RecentEvents eventData={recentEvents} categoryData={categoryData}/>
     </div>
   );
 }

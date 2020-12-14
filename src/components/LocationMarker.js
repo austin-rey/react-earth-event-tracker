@@ -28,43 +28,43 @@ const LocationMarker = ({onClick,type}) => {
     const classes = useStyles();
 
     switch(type) {
-        case 6  : //Drought
+        case 'drought'  : //Drought
             return <FontAwesomeIcon icon={faSun} className={clsx(classes.icon, classes.faSun)} onClick={onClick}/>
 
-        case 7  : //Dust and Haze
+        case 'dustHaze'  : //Dust and Haze
             return <FontAwesomeIcon icon={faSmog} className={clsx(classes.icon, classes.faSmog)} onClick={onClick}/>
 
-        case 16 : //Earthquakes
+        case 'earthquakes' : //Earthquakes
             return <FontAwesomeIcon icon={faHouseDamage} className={clsx(classes.icon, classes.faHouseDamage)} onClick={onClick}/>
 
-        case 9  : //Floods
+        case 'floods'  : //Floods
             return <FontAwesomeIcon icon={faWater} className={clsx(classes.icon, classes.faWater)} onClick={onClick}/>
 
-        case 14 : //Landslides
+        case 'landslides' : //Landslides
             return <FontAwesomeIcon icon={faRoad} className={clsx(classes.icon, classes.faRoad)} onClick={onClick}/>
 
-        case 19 : //Manmade
+        case 'manmade' : //Manmade
             return <FontAwesomeIcon icon={faMale} className={clsx(classes.icon, classes.faMale)} onClick={onClick}/>
 
-        case 15 : //Sea and Lake Ice
+        case 'seaLakeIce' : //Sea and Lake Ice
             return <FontAwesomeIcon icon={faIcicles} className={clsx(classes.icon, classes.faIcicles)} onClick={onClick}/>
 
-        case 10 : //Severe Storms
+        case 'severeStorms' : //Severe Storms
             return <FontAwesomeIcon icon={faCloudShowersHeavy} className={clsx(classes.icon, classes.faCloudShowersHeavy)} onClick={onClick}/>
 
-        case 17 : //Snow
+        case 'snow' : //Snow
             return <FontAwesomeIcon icon={faSnowflake} className={clsx(classes.icon, classes.faSnowflake)} onClick={onClick}/>
 
-        case 18 : //Temperature Extremes
+        case 'tempExtremes' : //Temperature Extremes
             return <FontAwesomeIcon icon={faTemperatureLow} className={clsx(classes.icon, classes.faTemperatureLow)} onClick={onClick}/>
 
-        case 12 : //Volcanoes
+        case 'volcanoes' : //Volcanoes
             return <FontAwesomeIcon icon={faMountain} className={clsx(classes.icon, classes.faMountain)} onClick={onClick}/>
 
-        case 13 : //Water Color
+        case 'waterColor' : //Water Color
             return <FontAwesomeIcon icon={faBacterium} className={clsx(classes.icon, classes.faBacterium)} onClick={onClick}/>
 
-        case 8  : //Wildfires
+        case 'wildfires'  : //Wildfires
             return <FontAwesomeIcon icon={faFire} className={clsx(classes.icon, classes.faFire)} onClick={onClick}/>;
 
         default : //Other
@@ -73,8 +73,8 @@ const LocationMarker = ({onClick,type}) => {
 }
 
 LocationMarker.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    type: PropTypes.number.isRequired
+    onClick: PropTypes.func,
+    type: PropTypes.string.isRequired
 }
 
 export default LocationMarker

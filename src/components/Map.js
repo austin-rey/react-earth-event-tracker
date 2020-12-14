@@ -19,14 +19,23 @@ const useStyles = makeStyles((theme) => ({
 
 const Map = ({eventData, center, zoom}) => {
 
+    console.log(eventData);
     const classes = useStyles();
 
     const [locationInfo, setLocationInfo] = useState(null);
     
     const markers = eventData.map(ev => {
-        if(ev.geometries[0].type === "Point") {
-            return <LocationMarker lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]} onClick={()=>setLocationInfo({id:ev.id, title:ev.title, date:[...ev.geometries], category:[...ev.categories]})} type={ev.categories[0].id}/> 
-        }
+        if(ev.geometry[0].type === "Point") {
+            return <LocationMarker 
+            lat={ev.geometry[0].coordinates[1]} 
+            lng={ev.geometry[0].coordinates[0]} 
+            onClick={()=>setLocationInfo(
+                {id:ev.id, 
+                title:ev.title, 
+                date:[...ev.geometry], 
+                category:[...ev.categories]})
+            } 
+            type={ev.categories[0].id}/>}
         return;
        
     })
